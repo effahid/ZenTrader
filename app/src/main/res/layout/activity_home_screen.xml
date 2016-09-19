@@ -9,8 +9,41 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.zentrader.HomeScreen">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/instrumentPane">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/instrumentTable">
+            <TableRow
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/instrumentsHeader"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true">
+                <TextView  android:layout_weight="10" android:text=""  android:textAlignment="center"  />
+                <TextView  android:layout_weight="50" android:text="INSTRUMENT" android:textAlignment="center"   />
+                <TextView  android:layout_weight="20" android:text="BUY"  android:textAlignment="center"  />
+                <TextView  android:layout_weight="20" android:text="SELL"  android:textAlignment="center"  />
+            </TableRow>
+        </TableLayout>
+
+
+    </ScrollView>
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Add row XML"
+        android:id="@+id/addRowIButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/instrumentPane"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
