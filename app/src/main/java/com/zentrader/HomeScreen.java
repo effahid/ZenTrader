@@ -2,60 +2,68 @@ package com.zentrader;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class HomeScreen extends AppCompatActivity {
+    final Handler handler = new Handler();
+    //@BindView(R.id.instrumentTable)
 
-    @BindView(R.id.instrumentTable)
-    TableLayout tableLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
-
         ButterKnife.bind(this);
+
+        final MyListAdapter listAdapter = new MyListAdapter(this,getStock());
+
+        ListView listView = (ListView)findViewById(R.id.MyList);
+        listView.setAdapter(listAdapter);
+
+        Runnable runnable = new Runnable()
+        {
+            @Override
+            public void run() {
+                updateAdapter(listAdapter);
+                handler.postDelayed(this, 1000);
+            }
+        };
+
+        handler.postDelayed(runnable,1000);
     }
 
-    public void addRow(View view)
+    public void updateAdapter(MyListAdapter listAdapter)
     {
-        TableRow tableRow= new TableRow(this);
-
-        tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT,TableRow.LayoutParams.WRAP_CONTENT));
-
-        TextView textLabel = new TextView(this);
-        textLabel.setText("GOLD");
-        textLabel.setTextColor(Color.BLACK);
-        textLabel.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT,TableRow.LayoutParams.WRAP_CONTENT));
-
-        TextView currentBuy = new TextView(this);
-        textLabel.setTextColor(Color.BLACK);
-        currentBuy.setText("15");
-
-        currentBuy.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT,TableRow.LayoutParams.WRAP_CONTENT));
-
-        //tableRow.addView(textLabel,new TableLayout.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,                TableLayout.LayoutParams.WRAP_CONTENT));
-
-        //  tableRow.addView(currentBuy,new TableLayout.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,                TableLayout.LayoutParams.WRAP_CONTENT));
-        tableRow.addView(currentBuy);
-        tableRow.addView(textLabel);
-        // tableLayout.addView(tableRow, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
-
-        tableLayout.addView(tableRow, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+        Random random= new Random();
+        Stock[] stocks = new Stock[5];
+        for(int i=0;i<5;i++){
+            stocks[i]= new Stock('U',random.nextInt(),random.nextInt());
+        }
+        listAdapter.stockData=stocks;
+        listAdapter.notifyDataSetChanged();
     }
 
-    @OnClick(R.id.addRowIButton)
-    public void addRowXml(View view)
-    {
-        TableRow tableRow= (TableRow)View.inflate(this,R.layout.instrument_row,null);
-        tableLayout.addView(tableRow);
+    public Stock[] getStock() {
+        Stock[] stocks = new Stock[5];
+        stocks[0]= new Stock('U',20,10);
+        stocks[1]= new Stock('U',30,28);
+
+        stocks[2]= new Stock('D',25,28);
+        stocks[3]= new Stock('D',25,28);
+        stocks[4]= new Stock('D',25,28);
+        return stocks;
     }
+
 }
