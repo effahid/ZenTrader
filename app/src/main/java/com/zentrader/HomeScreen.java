@@ -1,24 +1,18 @@
 package com.zentrader;
 
-import android.app.Activity;
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
-
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.Random;
-
-import javax.xml.datatype.Duration;
 
 import butterknife.ButterKnife;
 
@@ -30,7 +24,7 @@ public class HomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
-        ButterKnife.bind(this);
+        //ButterKnife.bind(this);
 
         Toolbar mainToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(mainToolbar);
@@ -89,7 +83,7 @@ public class HomeScreen extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.home_menu,menu);
         return true;
     }
 

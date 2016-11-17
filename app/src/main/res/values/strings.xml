@@ -3,5 +3,6 @@
     <string name="addInstrument">Add Instrument</string>
     <string name="instrumentSettings">Instrument Settings</string>
     <string name="action_settings">Settings</string>
+    <string name="goBack"><![CDATA[<Back]]></string>
 
 </resources>
