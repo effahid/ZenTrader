@@ -1,29 +1,30 @@
 package com.zentrader;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.Random;
 
+import javax.xml.datatype.Duration;
+
 import butterknife.ButterKnife;
 
 public class HomeScreen extends AppCompatActivity {
     final Handler handler = new Handler();
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
 
-//    @BindView(R.id.maintoolbar)
-//    Toolbar mainToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,20 @@ public class HomeScreen extends AppCompatActivity {
 
         handler.postDelayed(runnable, 1000);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                InstrumentDetailActivity instrumentDetail= new InstrumentDetailActivity();
+
+                Intent openInstrumentDetail= new Intent(getBaseContext(),InstrumentDetailActivity.class);
+
+                startActivity(openInstrumentDetail);
+            }
+        });
+
     }
+
 
     public void updateAdapter(MyListAdapter listAdapter) {
         Random random = new Random();
@@ -80,3 +94,5 @@ public class HomeScreen extends AppCompatActivity {
     }
 
 }
+
+

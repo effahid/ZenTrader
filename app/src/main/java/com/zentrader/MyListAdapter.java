@@ -27,4 +27,6 @@ public class MyListAdapter extends ArrayAdapter<Stock> {
         stockSell.setText(stockData[position].Sell);
         return rowView;
     }
+
+
 }
