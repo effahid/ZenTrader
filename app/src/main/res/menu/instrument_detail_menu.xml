@@ -3,10 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/goback"
-        android:icon="@drawable/ic_action_add"
         android:title="@string/goBack"
         app:showAsAction="ifRoom"
-
+        android:onClick="GoBack"
         />
 
 

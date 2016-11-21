@@ -48,8 +48,6 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                InstrumentDetailActivity instrumentDetail= new InstrumentDetailActivity();
-
                 Intent openInstrumentDetail= new Intent(getBaseContext(),InstrumentDetailActivity.class);
 
                 startActivity(openInstrumentDetail);
@@ -86,7 +84,6 @@ public class HomeScreen extends AppCompatActivity {
         inflater.inflate(R.menu.home_menu,menu);
         return true;
     }
-
 }
 
 

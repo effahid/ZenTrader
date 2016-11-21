@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 public class InstrumentDetailActivity extends AppCompatActivity {
@@ -13,9 +14,7 @@ public class InstrumentDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.instrument_detail);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.instrument_detail_toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("");
+
 
     }
 
@@ -27,7 +26,7 @@ public class InstrumentDetailActivity extends AppCompatActivity {
         return true;
     }
 
-    public void GoBack(View view) {
+    public void GoBack(MenuItem item) {
         finish();
     }
 }
