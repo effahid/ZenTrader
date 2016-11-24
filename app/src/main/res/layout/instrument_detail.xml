@@ -21,6 +21,8 @@
             android:layout_height="wrap_content"
             android:text="GOLD"
             android:textSize="18sp"
+            android:layout_marginLeft="15dip"
+            android:layout_marginBottom="10dip"
             />
     </LinearLayout>
 
@@ -29,8 +31,9 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/topbar"
-        android:backgroundTint="@color/colorAccent"
-        android:background="@color/colorAccent">
+        android:id="@+id/topboxcontainer"
+        android:background="@color/boxbg"
+       >
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -42,8 +45,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="left pane"
+                android:text="BUY"
+                android:textSize="14sp"
+                android:paddingLeft="30dp"
+                android:textColor="@color/textcolor"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1211"
                 android:textSize="18sp"
+                android:paddingLeft="30dp"
+                android:textColor="@color/textcolor"
                 />
         </LinearLayout>
         <LinearLayout
@@ -53,17 +66,79 @@
             android:layout_weight="1"
             android:weightSum="2"
             android:padding="5dp"
-            android:layout_margin="5dp">
+            android:layout_margin="5dp"
+            android:paddingRight="70dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="right pane"
+                android:layout_gravity="left"
+                android:text="SELL"
+                android:textSize="14sp"
+                android:paddingLeft="38dp"
+                android:textColor="@color/textcolor"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1210"
+                android:layout_gravity="left"
                 android:textSize="18sp"
+                android:paddingLeft="30dp"
+                android:textColor="@color/textcolor"
                 />
         </LinearLayout>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:padding="5dp"
+        android:layout_below="@id/topboxcontainer"
+        android:background="@color/boxbg"
+        android:layout_marginTop="1dip"
+        android:id="@+id/quantitycontainer">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Enter Quantity"
+            android:textSize="14sp"
+            android:textColor="@color/textcolor"
 
+            />
+
+    </LinearLayout>
+
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/quantitycontainer">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+           <android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabMode="fixed"
+                app:tabGravity="fill"
+                app:tabTextColor="@color/black"/>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
+    </android.support.design.widget.CoordinatorLayout>
 
 
 </RelativeLayout>

@@ -4,5 +4,8 @@
     <string name="instrumentSettings">Instrument Settings</string>
     <string name="action_settings">Settings</string>
     <string name="goBack"><![CDATA[<Back]]></string>
+    <string name="charttitle">CHART</string>
+    <string name="layout_title">POSITIONS</string>
+    <string name="change_title">CHANGE</string>
 
 </resources>
