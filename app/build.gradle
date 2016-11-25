@@ -27,4 +27,5 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     compile 'com.android.support:design:+'
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.1'
 }
