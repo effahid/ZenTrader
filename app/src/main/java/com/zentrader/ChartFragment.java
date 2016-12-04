@@ -25,25 +25,50 @@ import java.util.Random;
 
 public class ChartFragment extends Fragment {
 
+    final Handler handler = new Handler();
+    protected View mView;
+    int counter;
+    Random random = new Random();
     public ChartFragment() {
         // Required empty public constructor
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
+        counter++;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.chart_layout, container, false);
+        mView= view;
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                updateChart();
+                handler.postDelayed(this, 1000);
+            }
+        };
 
-        LineChart lineChart = (LineChart)view.findViewById(R.id.linechart);
+        handler.postDelayed(runnable, 1000);
+
+        return view;
+    }
+
+    private void updateChart() {
+        LineChart lineChart = (LineChart)mView.findViewById(R.id.linechart);
         List<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(1,6));
-        entries.add(new Entry(2,7));
-        entries.add(new Entry(3,8));
+
+
+
+        int xValue= Math.round(random.nextInt(10));
+        int yValue= Math.round(random.nextInt(10));
+        entries.add(new Entry(xValue,yValue));
+        counter++;
 
         LineDataSet set = new LineDataSet(entries,"Days/Hours");
         set.setColor(5);
@@ -51,9 +76,8 @@ public class ChartFragment extends Fragment {
 
         LineData lineData = new LineData(set);
         lineChart.setData(lineData);
-        lineChart.invalidate();
 
-        return view;
+        lineChart.invalidate();
     }
 }
 

@@ -61,7 +61,7 @@ public class HomeScreen extends AppCompatActivity {
         Random random = new Random();
         Stock[] stocks = new Stock[5];
         for (int i = 0; i < 5; i++) {
-            stocks[i] = new Stock('U', random.nextInt(), random.nextInt());
+            stocks[i] = new Stock('U', random.nextInt(10), random.nextInt(10));
         }
         listAdapter.stockData = stocks;
         listAdapter.notifyDataSetChanged();
