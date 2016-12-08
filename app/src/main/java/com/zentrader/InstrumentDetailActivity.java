@@ -37,6 +37,7 @@ public class InstrumentDetailActivity extends AppCompatActivity {
         adapter.addFragment(new PositionsFragment(), "POSITIONS");
         adapter.addFragment(new ChangeFragment(), "CHANGE");
         viewPager.setAdapter(adapter);
+
     }
 
     @Override

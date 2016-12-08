@@ -18,6 +18,7 @@ import android.widget.ListView;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -63,6 +64,7 @@ public class ChartFragment extends Fragment {
 //
 //        handler.postDelayed(runnable, 1000);
         mChart=(LineChart)mView.findViewById(R.id.linechart);
+
         setData(45, 100);
         return view;
     }
@@ -100,7 +102,7 @@ public class ChartFragment extends Fragment {
             set1.setFormLineWidth(1f);
 
             set1.setFormLineDashEffect(new DashPathEffect(new float[]{10f, 5f}, 0f));
-            set1.setFormSize(15.f);
+           // set1.setFormSize(15.f);
             set1.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
 //            if (Utils.getSDKInt() >= 18) {
 //                // fill drawable only supported on api level 18 and above
@@ -118,14 +120,24 @@ public class ChartFragment extends Fragment {
             LineData data = new LineData(dataSets);
 
             // set data
+            mChart.setVisibleXRange(20,20);
             mChart.setData(data);
             //LOOK HERE, COMMENT OUT TO RESTRICT VIEW ..... HELLO
-            //mChart.setVisibleXRange(20,20);
 
-//        mChart.setVisibleYRange(20f, AxisDependency.LEFT);
-//        mChart.centerViewTo(20, 50, AxisDependency.LEFT);
 
-            mChart.animateX(8000, Easing.EasingOption.EaseInCirc);
+           mChart.setVisibleYRange(20f,100, YAxis.AxisDependency.RIGHT);
+            mChart.centerViewTo(20, 50, YAxis.AxisDependency.RIGHT);
+            YAxis leftAxis = mChart.getAxisLeft();
+            leftAxis.removeAllLimitLines(); // reset all limit lines to avoid overlapping lines
+            leftAxis.setAxisMaximum(100f);
+            leftAxis.setAxisMinimum(0f);
+            leftAxis.enableGridDashedLine(10f, 10f, 0f);
+            leftAxis.setDrawZeroLine(false);
+
+
+
+
+            mChart.animateX(8000);
         }
     }
 }
