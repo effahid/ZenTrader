@@ -65,7 +65,7 @@ public class ChartFragment extends Fragment {
 //        handler.postDelayed(runnable, 1000);
         mChart=(LineChart)mView.findViewById(R.id.linechart);
 
-        setData(45, 100);
+        setData(250, 100);
         return view;
     }
 
@@ -92,13 +92,13 @@ public class ChartFragment extends Fragment {
             // set the line to be drawn like this "- - - - - -"
             //set1.enableDashedLine(10f, 5f, 0f);
             //set1.enableDashedHighlightLine(10f, 5f, 0f);
-            set1.setColor(Color.BLACK);
+            set1.setColor(Color.GRAY);
             set1.setCircleColor(Color.BLACK);
             set1.setLineWidth(1f);
             set1.setCircleRadius(3f);
             set1.setDrawCircleHole(false);
             set1.setValueTextSize(9f);
-            set1.setDrawFilled(false);
+            set1.setDrawFilled(true);
             set1.setFormLineWidth(1f);
 
             set1.setFormLineDashEffect(new DashPathEffect(new float[]{10f, 5f}, 0f));
@@ -120,24 +120,28 @@ public class ChartFragment extends Fragment {
             LineData data = new LineData(dataSets);
 
             // set data
-            mChart.setVisibleXRange(20,20);
+
             mChart.setData(data);
-            //LOOK HERE, COMMENT OUT TO RESTRICT VIEW ..... HELLO
-
-
-           mChart.setVisibleYRange(20f,100, YAxis.AxisDependency.RIGHT);
-            mChart.centerViewTo(20, 50, YAxis.AxisDependency.RIGHT);
-            YAxis leftAxis = mChart.getAxisLeft();
-            leftAxis.removeAllLimitLines(); // reset all limit lines to avoid overlapping lines
-            leftAxis.setAxisMaximum(100f);
-            leftAxis.setAxisMinimum(0f);
-            leftAxis.enableGridDashedLine(10f, 10f, 0f);
-            leftAxis.setDrawZeroLine(false);
+            mChart.setVisibleXRangeMaximum(20);
+            mChart.moveViewToAnimated(100,100, YAxis.AxisDependency.LEFT,23000);
 
 
 
 
-            mChart.animateX(8000);
+//            mChart.setVisibleXRange(1,5);
+//            mChart.moveViewToX(2);
+//            mChart.animateX(3000);
+//            YAxis leftAxis = mChart.getAxisLeft();
+//            leftAxis.removeAllLimitLines(); // reset all limit lines to avoid overlapping lines
+//            leftAxis.setAxisMaximum(100f);
+//            leftAxis.setAxisMinimum(0f);
+//            leftAxis.enableGridDashedLine(10f, 10f, 0f);
+//            leftAxis.setDrawZeroLine(false);
+
+
+
+
+
         }
     }
 }
