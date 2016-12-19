@@ -18,7 +18,7 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         />
 
-        <RelativeLayout
+        <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="?android:attr/listPreferredItemHeight"
         android:padding="6dip"
@@ -27,32 +27,30 @@
 
         <TextView
             android:id="@+id/stockMovementHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="26dip"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:text="Description"
-            android:textSize="16sp"
-            android:paddingRight="25sp"/>
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="DESCRIPTION"
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/stockBuyHeader"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="BUY"
-            android:layout_toRightOf="@id/stockMovementHeader"
-            android:textSize="16sp"
-            android:paddingRight="25sp"/>
+            android:textAlignment="center"
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/stockSellHeader"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="SELL"
-            android:textSize="16sp"
-            android:layout_alignTop="@+id/stockBuyHeader"
-            android:layout_toEndOf="@+id/stockBuyHeader" />
-        </RelativeLayout>
+            android:textSize="14sp"
+            android:textAlignment="center" />
+        </LinearLayout>
     <ListView
         android:id="@+id/MyList"
         android:layout_width="match_parent"

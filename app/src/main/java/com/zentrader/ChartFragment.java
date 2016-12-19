@@ -65,7 +65,7 @@ public class ChartFragment extends Fragment {
 //        handler.postDelayed(runnable, 1000);
         mChart=(LineChart)mView.findViewById(R.id.linechart);
 
-        setData(250, 100);
+        setData(30, 100);
         return view;
     }
 
@@ -74,7 +74,7 @@ public class ChartFragment extends Fragment {
 
         for (int i = 0; i < count; i++) {
 
-            float val = (float) (Math.random() * range) + 3;
+            float val = (float) (1200+Math.random() * range) + 3;
             values.add(new Entry(i, val));
         }
         LineDataSet set1;
@@ -103,7 +103,7 @@ public class ChartFragment extends Fragment {
 
             set1.setFormLineDashEffect(new DashPathEffect(new float[]{10f, 5f}, 0f));
            // set1.setFormSize(15.f);
-            set1.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
+            set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
 //            if (Utils.getSDKInt() >= 18) {
 //                // fill drawable only supported on api level 18 and above
 //                Drawable drawable = ContextCompat.getDrawable(this, R.drawable.fade_red);
@@ -122,21 +122,18 @@ public class ChartFragment extends Fragment {
             // set data
 
             mChart.setData(data);
-            mChart.setVisibleXRangeMaximum(20);
+            mChart.setVisibleXRangeMaximum(10);
+
             mChart.moveViewToAnimated(100,100, YAxis.AxisDependency.LEFT,23000);
 
 
 
 
-//            mChart.setVisibleXRange(1,5);
-//            mChart.moveViewToX(2);
-//            mChart.animateX(3000);
-//            YAxis leftAxis = mChart.getAxisLeft();
-//            leftAxis.removeAllLimitLines(); // reset all limit lines to avoid overlapping lines
-//            leftAxis.setAxisMaximum(100f);
-//            leftAxis.setAxisMinimum(0f);
-//            leftAxis.enableGridDashedLine(10f, 10f, 0f);
-//            leftAxis.setDrawZeroLine(false);
+
+            YAxis leftAxis = mChart.getAxisLeft();
+
+            leftAxis.setEnabled(false);
+
 
 
 
