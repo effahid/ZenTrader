@@ -20,11 +20,13 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/listPreferredItemHeight"
-        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:layout_height="wrap_content"
+        android:paddingBottom="0dp"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:id="@+id/tableHeader"
-        android:layout_below="@id/my_toolbar">
+        android:layout_below="@id/my_toolbar"
+        android:layout_marginBottom="0dp"
+        >
 
         <TextView
             android:id="@+id/stockMovementHeader"
@@ -60,13 +62,18 @@
         android:layout_height="1dp"
         android:background="?android:attr/listDivider"
         android:layout_below="@id/tableHeader"
-        android:layout_marginTop="-20dp"/>
+        android:paddingBottom="0dp"
+        android:layout_marginBottom="0dp"/>
     <ListView
         android:id="@+id/MyList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tableHeader"
-        android:layout_alignStart="@id/tableHeader" />
+        android:layout_alignStart="@id/tableHeader"
+        android:paddingTop="0dp"
+        android:layout_marginTop="0dp"
+
+        />
 
 
 
