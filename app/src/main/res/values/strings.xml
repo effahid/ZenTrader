@@ -7,5 +7,6 @@
     <string name="charttitle">CHART</string>
     <string name="layout_title">POSITIONS</string>
     <string name="change_title">CHANGE</string>
+    <string name="addInstrumentHeader">ADD INSTRUMENTS</string>
 
 </resources>

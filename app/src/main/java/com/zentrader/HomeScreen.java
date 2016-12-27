@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -83,6 +84,11 @@ public class HomeScreen extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.home_menu,menu);
         return true;
+    }
+
+    public void ShowAddInstrument(MenuItem item) {
+        Intent addInstrumentIntent= new Intent(getBaseContext(),AddInstrumentActivity.class);
+        startActivity(addInstrumentIntent);
     }
 }
 

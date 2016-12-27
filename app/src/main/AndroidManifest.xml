@@ -11,11 +11,11 @@
         <activity android:name=".HomeScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".InstrumentDetailActivity">
+        <activity android:name=".InstrumentDetailActivity"/>
+        <activity android:name=".AddInstrumentActivity">
 
         </activity>
         <meta-data
