@@ -21,22 +21,15 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search..."/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider"
-        android:layout_below="@id/tableHeader"
-        android:paddingBottom="0dp"
-        android:layout_marginBottom="0dp"/>
+        android:text="Search..."
+        android:id="@+id/add_instrument_input"/>
+
     <ListView
-        android:id="@+id/MyList"
+        android:id="@+id/available_instruments_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tableHeader"
-        android:layout_alignStart="@id/tableHeader"
-        android:paddingTop="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_below="@id/add_instrument_input"
+        android:layout_alignStart="@id/add_instrument_input"
 
         />
 

@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.Random;
@@ -18,10 +19,83 @@ public class AddInstrumentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_screen);
+        setContentView(R.layout.add_instrument);
         Toolbar instrumentToolbar = (Toolbar) findViewById(R.id.action_addInstrument);
+        String [] availableStockName= getAvailableStockName();
+        AvailableInstrumentsAdapter adapter = new AvailableInstrumentsAdapter(this,availableStockName);
+        ListView availableInstruments = (ListView)findViewById(R.id.available_instruments_list);
+        availableInstruments.setAdapter(adapter);
         setSupportActionBar(instrumentToolbar);
 
+    }
+
+    private String[] getAvailableStockName() {
+
+        return new String[]{
+                "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+       , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                ,"Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+,"Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+,"Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
+
+
+        };
     }
 
     @Override
