@@ -13,11 +13,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import butterknife.ButterKnife;
 
 public class HomeScreen extends AppCompatActivity {
+    private static final int ADD_INSTRUMENT_ACTIVITY_RESULT_CODE = 1;
     final Handler handler = new Handler();
 
 
@@ -49,7 +51,7 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Intent openInstrumentDetail= new Intent(getBaseContext(),InstrumentDetailActivity.class);
+                Intent openInstrumentDetail = new Intent(getBaseContext(), InstrumentDetailActivity.class);
 
                 startActivity(openInstrumentDetail);
             }
@@ -62,7 +64,7 @@ public class HomeScreen extends AppCompatActivity {
         Random random = new Random();
         Stock[] stocks = new Stock[5];
         for (int i = 0; i < 5; i++) {
-            stocks[i] = new Stock('U', random.nextFloat()+1200,random.nextFloat()+1190);
+            stocks[i] = new Stock('U', random.nextFloat() + 1200, random.nextFloat() + 1190);
         }
         listAdapter.stockData = stocks;
         listAdapter.notifyDataSetChanged();
@@ -82,13 +84,31 @@ public class HomeScreen extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.home_menu,menu);
+        inflater.inflate(R.menu.home_menu, menu);
         return true;
     }
 
     public void ShowAddInstrument(MenuItem item) {
-        Intent addInstrumentIntent= new Intent(getBaseContext(),AddInstrumentActivity.class);
-        startActivity(addInstrumentIntent);
+        Intent addInstrumentIntent = new Intent(getBaseContext(), AddInstrumentActivity.class);
+        ArrayList<String> selectedStocks = new ArrayList<String>();
+        selectedStocks.add("Gold");
+        addInstrumentIntent.putStringArrayListExtra("SelectedStocks", selectedStocks);
+        startActivityForResult(addInstrumentIntent, ADD_INSTRUMENT_ACTIVITY_RESULT_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        if (requestCode == ADD_INSTRUMENT_ACTIVITY_RESULT_CODE) {
+            if (resultCode == RESULT_OK) {
+
+                // get String data from Intent
+                ArrayList<String> returnString = data.getStringArrayListExtra("SelectedStocks");
+                String firstItem= returnString.get(0);
+            }
+        }
     }
 }
 

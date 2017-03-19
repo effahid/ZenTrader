@@ -12,4 +12,7 @@ public class Stock {
     public String Movement ;
     public String Buy;
     public String Sell;
+    public String Name;
+    public String Symbol;
+
 }

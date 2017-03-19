@@ -140,6 +140,20 @@ public class AddInstrumentActivity extends AppCompatActivity {
 
 
     }
+
+    public void CancelAdd(View view) {
+        finish();
+    }
+
+    public void AddInstrument(View view) {
+        Intent intentResult=new Intent();
+        ArrayList<String>selectedStocks= new ArrayList<>();
+
+        selectedStocks.add("Silver");
+        intentResult.putStringArrayListExtra("SelectedStocks",selectedStocks);
+        setResult(RESULT_OK,intentResult);
+        finish();
+    }
 }
 
 

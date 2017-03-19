@@ -43,12 +43,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/confirmInstrumentAdd"
-            android:layout_weight="5"/>
+            android:layout_weight="5"
+            android:onClick="AddInstrument"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/cancelInstrumentAdd"
-            android:layout_weight="5"/>
+            android:layout_weight="5"
+            android:onClick="CancelAdd"/>
     </LinearLayout>
 </LinearLayout>
