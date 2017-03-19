@@ -8,5 +8,7 @@
     <string name="layout_title">POSITIONS</string>
     <string name="change_title">CHANGE</string>
     <string name="addInstrumentHeader">ADD INSTRUMENTS</string>
-
+    <string name="confirmInstrumentAdd">Confirm</string>
+    <string name="cancelInstrumentAdd">Cancel</string>
+    <string name="add_instrument_header_text">Add Instrument</string>
 </resources>

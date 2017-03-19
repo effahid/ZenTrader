@@ -15,7 +15,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".InstrumentDetailActivity"/>
-        <activity android:name=".AddInstrumentActivity">
+        <activity android:name=".AddInstrumentActivity"  android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
 
         </activity>
         <meta-data

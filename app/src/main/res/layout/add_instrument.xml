@@ -1,38 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingBottom="0dp"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.zentrader.HomeScreen">
+    android:orientation="vertical"
+    tools:context="com.zentrader.HomeScreen"
+    android:weightSum="10">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/add_instrument_toolbar"
+    <TextView
+        android:id="@+id/add_instrument_label"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/add_instrument_header_text" />
 
     <EditText
+        android:id="@+id/add_instrument_input"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Search..."
-        android:id="@+id/add_instrument_input"/>
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <ListView
         android:id="@+id/available_instruments_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/add_instrument_input"
-        android:layout_alignStart="@id/add_instrument_input"
-
+        android:layout_height="0dp"
+        android:layout_weight="8"
         />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:weightSum="10">
 
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/confirmInstrumentAdd"
+            android:layout_weight="5"/>
 
-</RelativeLayout>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/cancelInstrumentAdd"
+            android:layout_weight="5"/>
+    </LinearLayout>
+</LinearLayout>
