@@ -19,10 +19,12 @@ public class MyListAdapter extends ArrayAdapter<Stock> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.instrument_row, parent, false);
+        TextView stockName = (TextView) rowView.findViewById(R.id.stockName);
         TextView stockMovement = (TextView) rowView.findViewById(R.id.stockMovement);
         TextView stockBuy = (TextView) rowView.findViewById(R.id.stockBuy);
         TextView stockSell = (TextView) rowView.findViewById(R.id.stockSell);
         stockMovement.setText("↑");
+        stockName.setText(stockData[position].Name);
         stockBuy.setText(String.format("%2f",stockData[position].Buy));
         stockSell.setText(String.format("%2f",stockData[position].Sell));
         return rowView;

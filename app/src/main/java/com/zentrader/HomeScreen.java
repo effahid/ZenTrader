@@ -23,7 +23,9 @@ public class HomeScreen extends AppCompatActivity {
     private static final int ADD_INSTRUMENT_ACTIVITY_RESULT_CODE = 1;
     final Handler handler = new Handler();
     private ArrayList<Stock> stockPortfolio = new ArrayList<>();
-
+    MyListAdapter listAdapter;
+    Runnable runnable;
+    ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,20 +35,20 @@ public class HomeScreen extends AppCompatActivity {
         Toolbar mainToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(mainToolbar);
 
-        final MyListAdapter listAdapter = new MyListAdapter(this, stockPortfolio.toArray(new Stock[0]));
+        listAdapter = new MyListAdapter(this, stockPortfolio.toArray(new Stock[0]));
 
-        ListView listView = (ListView) findViewById(R.id.MyList);
+        listView = (ListView) findViewById(R.id.MyList);
         listView.setAdapter(listAdapter);
 
-        Runnable runnable = new Runnable() {
+        runnable = new Runnable() {
             @Override
             public void run() {
                 updateAdapter(listAdapter);
-                handler.postDelayed(this, 1000);
+                handler.postDelayed(this, 3000);
             }
         };
 
-        handler.postDelayed(runnable, 1000);
+       // handler.postDelayed(runnable, 1000);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -94,8 +96,6 @@ public class HomeScreen extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-
         if (requestCode == ADD_INSTRUMENT_ACTIVITY_RESULT_CODE) {
             if (resultCode == RESULT_OK) {
 
@@ -103,8 +103,14 @@ public class HomeScreen extends AppCompatActivity {
                 ArrayList<String> addedStocks = data.getStringArrayListExtra("SelectedStocks");
                 for(String addedStock:addedStocks)
                 {
-                    stockPortfolio.add(new Stock("",addedStock));
+                    stockPortfolio.add(new Stock("1",addedStock));
                 }
+
+                listAdapter = new MyListAdapter(this, stockPortfolio.toArray(new Stock[stockPortfolio.size()]));
+
+                listView = (ListView) findViewById(R.id.MyList);
+                listView.setAdapter(listAdapter);
+                listAdapter.notifyDataSetChanged();
             }
         }
     }

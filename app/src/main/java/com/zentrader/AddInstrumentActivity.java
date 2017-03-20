@@ -73,6 +73,7 @@ public class AddInstrumentActivity extends AppCompatActivity {
             addedInstruments.remove(stock);
             selectedTextView.setBackground(null);
             selectedTextView.setTextColor(getResources().getColor(R.color.black));
+
         }
         else{
             addedInstruments.add(stock);
