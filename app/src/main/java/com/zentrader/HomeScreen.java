@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 import butterknife.ButterKnife;
@@ -21,7 +22,7 @@ import butterknife.ButterKnife;
 public class HomeScreen extends AppCompatActivity {
     private static final int ADD_INSTRUMENT_ACTIVITY_RESULT_CODE = 1;
     final Handler handler = new Handler();
-
+    private ArrayList<Stock> stockPortfolio = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class HomeScreen extends AppCompatActivity {
         Toolbar mainToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(mainToolbar);
 
-        final MyListAdapter listAdapter = new MyListAdapter(this, getStock());
+        final MyListAdapter listAdapter = new MyListAdapter(this, stockPortfolio.toArray(new Stock[0]));
 
         ListView listView = (ListView) findViewById(R.id.MyList);
         listView.setAdapter(listAdapter);
@@ -62,23 +63,14 @@ public class HomeScreen extends AppCompatActivity {
 
     public void updateAdapter(MyListAdapter listAdapter) {
         Random random = new Random();
-        Stock[] stocks = new Stock[5];
-        for (int i = 0; i < 5; i++) {
-            stocks[i] = new Stock('U', random.nextFloat() + 1200, random.nextFloat() + 1190);
+        for(Stock stock:stockPortfolio )
+        {
+            stock.Buy= random.nextFloat() + 1200;
+            stock.Sell= random.nextFloat() + 1190;
+            stock.Movement="U";
         }
-        listAdapter.stockData = stocks;
+        listAdapter.stockData = stockPortfolio.toArray(new Stock[stockPortfolio.size()]);
         listAdapter.notifyDataSetChanged();
-    }
-
-    public Stock[] getStock() {
-        Stock[] stocks = new Stock[5];
-        stocks[0] = new Stock('U', 20, 10);
-        stocks[1] = new Stock('U', 30, 28);
-
-        stocks[2] = new Stock('D', 25, 28);
-        stocks[3] = new Stock('D', 25, 28);
-        stocks[4] = new Stock('D', 25, 28);
-        return stocks;
     }
 
     @Override
@@ -90,8 +82,11 @@ public class HomeScreen extends AppCompatActivity {
 
     public void ShowAddInstrument(MenuItem item) {
         Intent addInstrumentIntent = new Intent(getBaseContext(), AddInstrumentActivity.class);
-        ArrayList<String> selectedStocks = new ArrayList<String>();
-        selectedStocks.add("Gold");
+        ArrayList<String> selectedStocks = new ArrayList<>();
+        for(Stock stock:stockPortfolio)
+        {
+            selectedStocks.add(stock.Symbol);
+        }
         addInstrumentIntent.putStringArrayListExtra("SelectedStocks", selectedStocks);
         startActivityForResult(addInstrumentIntent, ADD_INSTRUMENT_ACTIVITY_RESULT_CODE);
     }
@@ -105,8 +100,11 @@ public class HomeScreen extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
 
                 // get String data from Intent
-                ArrayList<String> returnString = data.getStringArrayListExtra("SelectedStocks");
-                String firstItem= returnString.get(0);
+                ArrayList<String> addedStocks = data.getStringArrayListExtra("SelectedStocks");
+                for(String addedStock:addedStocks)
+                {
+                    stockPortfolio.add(new Stock("",addedStock));
+                }
             }
         }
     }

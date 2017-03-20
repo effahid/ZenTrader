@@ -23,8 +23,8 @@ public class MyListAdapter extends ArrayAdapter<Stock> {
         TextView stockBuy = (TextView) rowView.findViewById(R.id.stockBuy);
         TextView stockSell = (TextView) rowView.findViewById(R.id.stockSell);
         stockMovement.setText("↑");
-        stockBuy.setText(stockData[position].Buy);
-        stockSell.setText(stockData[position].Sell);
+        stockBuy.setText(String.format("%2f",stockData[position].Buy));
+        stockSell.setText(String.format("%2f",stockData[position].Sell));
         return rowView;
     }
 

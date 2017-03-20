@@ -25,7 +25,7 @@ import java.util.Random;
 
 public class AddInstrumentActivity extends AppCompatActivity {
 
-    List<String> addedInstruments= new ArrayList<String>();
+    ArrayList<String> addedInstruments= new ArrayList<String>();
     Drawable defaultBackground;
     private int defaultColor;
 
@@ -35,7 +35,7 @@ public class AddInstrumentActivity extends AppCompatActivity {
         setContentView(R.layout.add_instrument);
 
         Toolbar instrumentToolbar = (Toolbar) findViewById(R.id.action_addInstrument);
-        String [] availableStockName= getAvailableStockName();
+        Stock[] availableStockName= getAvailableStockName();
         AvailableInstrumentsAdapter adapter = new AvailableInstrumentsAdapter(this,availableStockName);
         ListView availableInstruments = (ListView)findViewById(R.id.available_instruments_list);
         availableInstruments.setAdapter(adapter);
@@ -43,72 +43,14 @@ public class AddInstrumentActivity extends AppCompatActivity {
 
     }
 
-    private String[] getAvailableStockName() {
+    private Stock[] getAvailableStockName() {
 
-        return new String[]{
-                "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-       , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                ,"Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-,"Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-,"Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-                , "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD", "Gold","Silver","Platinum","ANET","BNET","CSAV","TLSD","TDXD"
-
-
+        return new Stock[]{
+                new Stock("GLD","GOLD"),
+                new Stock("SLVR","SILVER"),
+                new Stock("PLTN","PLATINUM"),
+                new Stock("MSFT","MICROSOFT"),
+                new Stock("APPL","APPLE")
         };
     }
 
@@ -146,14 +88,10 @@ public class AddInstrumentActivity extends AppCompatActivity {
     }
 
     public void AddInstrument(View view) {
-        Intent intentResult=new Intent();
-        ArrayList<String>selectedStocks= new ArrayList<>();
+        Intent intentResult=new Intent(); ArrayList<String>selectedStocks= new ArrayList<>();
 
-        selectedStocks.add("Silver");
-        intentResult.putStringArrayListExtra("SelectedStocks",selectedStocks);
+        intentResult.putStringArrayListExtra("SelectedStocks",addedInstruments);
         setResult(RESULT_OK,intentResult);
         finish();
     }
 }
-
-
