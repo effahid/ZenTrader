@@ -26,6 +26,7 @@ public class HomeScreen extends AppCompatActivity {
     MyListAdapter listAdapter;
     Runnable runnable;
     ListView listView;
+    boolean beganUpdating;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +36,7 @@ public class HomeScreen extends AppCompatActivity {
         Toolbar mainToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(mainToolbar);
 
-        listAdapter = new MyListAdapter(this, stockPortfolio.toArray(new Stock[0]));
+        listAdapter = new MyListAdapter(this, stockPortfolio);
 
         listView = (ListView) findViewById(R.id.MyList);
         listView.setAdapter(listAdapter);
@@ -71,7 +72,7 @@ public class HomeScreen extends AppCompatActivity {
             stock.Sell= random.nextFloat() + 1190;
             stock.Movement="U";
         }
-        listAdapter.stockData = stockPortfolio.toArray(new Stock[stockPortfolio.size()]);
+        listAdapter.stockData = stockPortfolio;
         listAdapter.notifyDataSetChanged();
     }
 
@@ -99,18 +100,20 @@ public class HomeScreen extends AppCompatActivity {
         if (requestCode == ADD_INSTRUMENT_ACTIVITY_RESULT_CODE) {
             if (resultCode == RESULT_OK) {
 
+
+
                 // get String data from Intent
                 ArrayList<String> addedStocks = data.getStringArrayListExtra("SelectedStocks");
                 for(String addedStock:addedStocks)
                 {
                     stockPortfolio.add(new Stock("1",addedStock));
                 }
-
-                listAdapter = new MyListAdapter(this, stockPortfolio.toArray(new Stock[stockPortfolio.size()]));
-
-                listView = (ListView) findViewById(R.id.MyList);
-                listView.setAdapter(listAdapter);
                 listAdapter.notifyDataSetChanged();
+
+                if(!beganUpdating){
+                    beganUpdating=true;
+                    handler.postDelayed(runnable, 2000);
+                }
             }
         }
     }

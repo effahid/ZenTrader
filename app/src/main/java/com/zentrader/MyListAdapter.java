@@ -7,10 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MyListAdapter extends ArrayAdapter<Stock> {
 
-    Stock[] stockData;
-    public MyListAdapter(Context context, Stock[] values) {
+    ArrayList<Stock> stockData;
+    public MyListAdapter(Context context, ArrayList<Stock> values) {
         super(context, -1, values);
         stockData=values;
     }
@@ -24,9 +26,9 @@ public class MyListAdapter extends ArrayAdapter<Stock> {
         TextView stockBuy = (TextView) rowView.findViewById(R.id.stockBuy);
         TextView stockSell = (TextView) rowView.findViewById(R.id.stockSell);
         stockMovement.setText("↑");
-        stockName.setText(stockData[position].Name);
-        stockBuy.setText(String.format("%2f",stockData[position].Buy));
-        stockSell.setText(String.format("%2f",stockData[position].Sell));
+        stockName.setText(stockData.get(position).Name);
+        stockBuy.setText(String.format("%2f",stockData.get(position).Buy));
+        stockSell.setText(String.format("%2f",stockData.get(position).Sell));
         return rowView;
     }
 
