@@ -48,15 +48,16 @@ public class AddInstrumentActivity extends AppCompatActivity {
                 TextView stockSymbolTextView = (TextView)row.getChildAt(0);
                 TextView stockNameTextView = (TextView)row.getChildAt(1);
 
-                String stock = stockSymbolTextView.getText().toString();
-                if(addedInstruments.contains(stock)){
+                String stockSymbol = stockSymbolTextView.getText().toString();
+                String stockName = stockNameTextView.getText().toString();
+                if(addedInstruments.contains(stockSymbol)){
                     stockNameTextView.setTextColor(getResources().getColor(R.color.black));
                     stockSymbolTextView.setTextColor(getResources().getColor(R.color.black));
-                    addedInstruments.remove(stock);
+                    addedInstruments.remove(stockName);
                     row.setBackground(null);
                 }
                 else{
-                    addedInstruments.add(stock);
+                    addedInstruments.add(stockName);
                     row.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
                     stockNameTextView.setTextColor(Color.WHITE);
                     stockSymbolTextView.setTextColor(Color.WHITE);

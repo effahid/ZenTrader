@@ -68,8 +68,8 @@ public class HomeScreen extends AppCompatActivity {
         Random random = new Random();
         for(Stock stock:stockPortfolio )
         {
-            stock.Buy= random.nextFloat() + 1200;
-            stock.Sell= random.nextFloat() + 1190;
+            stock.Buy= random.nextFloat()+1200;
+            stock.Sell= random.nextFloat()+1190;
             stock.Movement="U";
         }
         listAdapter.stockData = stockPortfolio;
