@@ -36,13 +36,39 @@ public class AddInstrumentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_instrument);
 
+        AdapterView.OnItemClickListener rowClickListener = new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                LinearLayout row=(LinearLayout)view;
+                if(defaultBackground==null){
+                    defaultBackground=view.getBackground();
+                }
+
+                final int childCount=row.getChildCount();
+                for (int child=0;child<childCount;child++)
+                {
+                    TextView textView= (TextView) row.getChildAt(child);
+                    String stock = textView.getText().toString();
+                    if(addedInstruments.contains(stock)){
+                        addedInstruments.remove(stock);
+                        row.setBackground(null);
+                    }
+                    else{
+                        addedInstruments.add(stock);
+                        row.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                    }
+
+                }
+            }};
         Toolbar instrumentToolbar = (Toolbar) findViewById(R.id.action_addInstrument);
         Stock[] availableStockName= getAvailableStockName();
         AvailableInstrumentsAdapter adapter = new AvailableInstrumentsAdapter(this,availableStockName);
         ListView availableInstruments = (ListView)findViewById(R.id.available_instruments_list);
         availableInstruments.setAdapter(adapter);
+        availableInstruments.setOnItemClickListener(rowClickListener);
+        availableInstruments.setItemsCanFocus(true);
         setSupportActionBar(instrumentToolbar);
-
     }
 
     private Stock[] getAvailableStockName() {
