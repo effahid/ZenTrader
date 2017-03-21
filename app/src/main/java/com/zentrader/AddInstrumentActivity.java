@@ -13,8 +13,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -71,14 +73,24 @@ public class AddInstrumentActivity extends AppCompatActivity {
 
         if(addedInstruments.contains(stock)){
             addedInstruments.remove(stock);
-            selectedTextView.setBackground(null);
-            selectedTextView.setTextColor(getResources().getColor(R.color.black));
+            LinearLayout r = (LinearLayout) view.getParent();
+            r.setBackground(null);
+            final int childcount =r.getChildCount();
 
+            for (int i = 0; i < childcount; i++) {
+                TextView v = (TextView)r.getChildAt(i);
+                if(v!=null)v.setTextColor(getResources().getColor(R.color.black));
+            }
         }
         else{
             addedInstruments.add(stock);
-            selectedTextView.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-            selectedTextView.setTextColor(Color.WHITE);
+            LinearLayout r = (LinearLayout) view.getParent();
+            r.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+            final int childcount =r.getChildCount();
+            for (int i = 0; i < childcount; i++) {
+                TextView v = (TextView)r.getChildAt(i);
+                if(v!=null)v.setTextColor(Color.WHITE);
+            }
         }
 
 
