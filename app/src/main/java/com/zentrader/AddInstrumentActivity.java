@@ -45,20 +45,21 @@ public class AddInstrumentActivity extends AppCompatActivity {
                     defaultBackground=view.getBackground();
                 }
 
-                final int childCount=row.getChildCount();
-                for (int child=0;child<childCount;child++)
-                {
-                    TextView textView= (TextView) row.getChildAt(child);
-                    String stock = textView.getText().toString();
-                    if(addedInstruments.contains(stock)){
-                        addedInstruments.remove(stock);
-                        row.setBackground(null);
-                    }
-                    else{
-                        addedInstruments.add(stock);
-                        row.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-                    }
+                TextView stockSymbolTextView = (TextView)row.getChildAt(0);
+                TextView stockNameTextView = (TextView)row.getChildAt(1);
 
+                String stock = stockSymbolTextView.getText().toString();
+                if(addedInstruments.contains(stock)){
+                    stockNameTextView.setTextColor(getResources().getColor(R.color.black));
+                    stockSymbolTextView.setTextColor(getResources().getColor(R.color.black));
+                    addedInstruments.remove(stock);
+                    row.setBackground(null);
+                }
+                else{
+                    addedInstruments.add(stock);
+                    row.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                    stockNameTextView.setTextColor(Color.WHITE);
+                    stockSymbolTextView.setTextColor(Color.WHITE);
                 }
             }};
         Toolbar instrumentToolbar = (Toolbar) findViewById(R.id.action_addInstrument);
