@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -49,7 +50,8 @@ public class AddInstrumentActivity extends AppCompatActivity {
                 TextView stockNameTextView = (TextView)row.getChildAt(1);
 
                 String stockSymbol = stockSymbolTextView.getText().toString();
-                String stockName = stockNameTextView.getText().toString();
+                String
+                        stockName = stockNameTextView.getText().toString();
                 if(addedInstruments.contains(stockSymbol)){
                     stockNameTextView.setTextColor(getResources().getColor(R.color.black));
                     stockSymbolTextView.setTextColor(getResources().getColor(R.color.black));
@@ -57,14 +59,17 @@ public class AddInstrumentActivity extends AppCompatActivity {
                     row.setBackground(null);
                 }
                 else{
-                    addedInstruments.add(stockName);
+                    addedInstruments.add(stockSymbol);
                     row.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
                     stockNameTextView.setTextColor(Color.WHITE);
                     stockSymbolTextView.setTextColor(Color.WHITE);
                 }
             }};
         Toolbar instrumentToolbar = (Toolbar) findViewById(R.id.action_addInstrument);
-        Stock[] availableStockName= getAvailableStockName();
+        Intent intent = getIntent();
+
+
+        Stock[] availableStockName= getAvailableStocks(intent.getStringArrayListExtra("SelectedStocks"));
         AvailableInstrumentsAdapter adapter = new AvailableInstrumentsAdapter(this,availableStockName);
         ListView availableInstruments = (ListView)findViewById(R.id.available_instruments_list);
         availableInstruments.setAdapter(adapter);
@@ -73,15 +78,28 @@ public class AddInstrumentActivity extends AppCompatActivity {
         setSupportActionBar(instrumentToolbar);
     }
 
-    private Stock[] getAvailableStockName() {
+    private Stock[] getAvailableStocks(ArrayList<String> selectedStocks) {
 
-        return new Stock[]{
-                new Stock("GLD","GOLD"),
-                new Stock("SLVR","SILVER"),
-                new Stock("PLTN","PLATINUM"),
-                new Stock("MSFT","MICROSOFT"),
-                new Stock("APPL","APPLE")
-        };
+        List<Stock> allStocks=new ArrayList<Stock>();
+
+        allStocks.add(new Stock("GLD","GOLD"));
+        allStocks.add(new Stock("SLVR","SILVER"));
+        allStocks.add(new Stock("PLTN","PLATINUM"));
+        allStocks.add(new Stock("APPL","APPLE"));
+
+        Iterator<Stock> i = allStocks.iterator();
+        while(i.hasNext())
+        {
+            Stock s = i.next();
+            Log.d("","Selected stock symbol: current = " + s.Symbol);
+            if(selectedStocks.contains(s.Symbol)){
+                i.remove();
+            }
+        }
+
+        allStocks.removeAll(selectedStocks);
+
+        return allStocks.toArray(new Stock[allStocks.size()]);
     }
 
     @Override
@@ -129,7 +147,7 @@ public class AddInstrumentActivity extends AppCompatActivity {
     }
 
     public void AddInstrument(View view) {
-        Intent intentResult=new Intent(); ArrayList<String>selectedStocks= new ArrayList<>();
+        Intent intentResult=new Intent();
 
         intentResult.putStringArrayListExtra("SelectedStocks",addedInstruments);
         setResult(RESULT_OK,intentResult);

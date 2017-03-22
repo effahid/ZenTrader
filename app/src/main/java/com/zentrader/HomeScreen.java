@@ -91,6 +91,7 @@ public class HomeScreen extends AppCompatActivity {
             selectedStocks.add(stock.Symbol);
         }
         addInstrumentIntent.putStringArrayListExtra("SelectedStocks", selectedStocks);
+        addInstrumentIntent.putExtra("ATest","Hyyyyy");
         startActivityForResult(addInstrumentIntent, ADD_INSTRUMENT_ACTIVITY_RESULT_CODE);
     }
 
@@ -106,7 +107,7 @@ public class HomeScreen extends AppCompatActivity {
                 ArrayList<String> addedStocks = data.getStringArrayListExtra("SelectedStocks");
                 for(String addedStock:addedStocks)
                 {
-                    stockPortfolio.add(new Stock("1",addedStock));
+                    stockPortfolio.add(new Stock(addedStock,addedStock));
                 }
                 listAdapter.notifyDataSetChanged();
 
