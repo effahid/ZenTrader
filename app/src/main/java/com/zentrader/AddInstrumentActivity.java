@@ -31,37 +31,7 @@ public class AddInstrumentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_instrument);
 
-        AdapterView.OnItemClickListener rowClickListener = new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                LinearLayout row=(LinearLayout)view;
-                if(defaultBackground==null){
-                    defaultBackground=view.getBackground();
-                }
-
-                TextView stockSymbolTextView = (TextView)row.getChildAt(0);
-                TextView stockNameTextView = (TextView)row.getChildAt(1);
-
-                String stockSymbol = stockSymbolTextView.getText().toString();
-                String
-                        stockName = stockNameTextView.getText().toString();
-                if(addedInstruments.contains(stockSymbol)){
-                    stockNameTextView.setTextColor(getResources().getColor(R.color.black));
-                    stockSymbolTextView.setTextColor(getResources().getColor(R.color.black));
-                    addedInstruments.remove(stockName);
-                    row.setBackground(null);
-                }
-                else{
-                    addedInstruments.add(stockSymbol);
-                    row.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-                    stockNameTextView.setTextColor(Color.WHITE);
-                    stockSymbolTextView.setTextColor(Color.WHITE);
-                }
-            }};
         Toolbar instrumentToolbar = (Toolbar) findViewById(R.id.action_addInstrument);
-        Intent intent = getIntent();
-
 
         ArrayList<Stock> existingStockList =(ArrayList<Stock>)getIntent().getSerializableExtra("SelectedStocks");
         Stock[] availableStockName= getAvailableStocks(existingStockList);
@@ -72,6 +42,34 @@ public class AddInstrumentActivity extends AppCompatActivity {
         availableInstruments.setItemsCanFocus(true);
         setSupportActionBar(instrumentToolbar);
     }
+
+    AdapterView.OnItemClickListener rowClickListener = new AdapterView.OnItemClickListener(){
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            LinearLayout row=(LinearLayout)view;
+            if(defaultBackground==null){
+                defaultBackground=view.getBackground();
+            }
+
+            TextView stockSymbolTextView = (TextView)row.getChildAt(0);
+            TextView stockNameTextView = (TextView)row.getChildAt(1);
+
+            String stockSymbol = stockSymbolTextView.getText().toString();
+            String
+                    stockName = stockNameTextView.getText().toString();
+            if(addedInstruments.contains(stockSymbol)){
+                stockNameTextView.setTextColor(getResources().getColor(R.color.black));
+                stockSymbolTextView.setTextColor(getResources().getColor(R.color.black));
+                addedInstruments.remove(stockName);
+                row.setBackground(null);
+            }
+            else{
+                addedInstruments.add(stockSymbol);
+                row.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                stockNameTextView.setTextColor(Color.WHITE);
+                stockSymbolTextView.setTextColor(Color.WHITE);
+            }
+        }};
 
     private Stock[] getAvailableStocks(ArrayList<Stock> selectedStocks) {
 
@@ -104,39 +102,6 @@ public class AddInstrumentActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.add_instrument_menu,menu);
         return true;
-    }
-
-    public void ToggleSelectedInstrument(View view) {
-        TextView selectedTextView = (TextView)view;
-        if(defaultBackground==null){
-            defaultBackground=view.getBackground();
-           //
-        }
-        String stock = selectedTextView.getText().toString();
-
-        if(addedInstruments.contains(stock)){
-            addedInstruments.remove(stock);
-            LinearLayout r = (LinearLayout) view.getParent();
-            r.setBackground(null);
-            final int childcount =r.getChildCount();
-
-            for (int i = 0; i < childcount; i++) {
-                TextView v = (TextView)r.getChildAt(i);
-                if(v!=null)v.setTextColor(getResources().getColor(R.color.black));
-            }
-        }
-        else{
-            addedInstruments.add(stock);
-            LinearLayout r = (LinearLayout) view.getParent();
-            r.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-            final int childcount =r.getChildCount();
-            for (int i = 0; i < childcount; i++) {
-                TextView v = (TextView)r.getChildAt(i);
-                if(v!=null)v.setTextColor(Color.WHITE);
-            }
-        }
-
-
     }
 
     public void CancelAdd(View view) {
