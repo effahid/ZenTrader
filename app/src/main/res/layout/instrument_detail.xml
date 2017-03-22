@@ -53,10 +53,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1211"
+                android:text="..."
                 android:textSize="18sp"
                 android:paddingLeft="30dp"
                 android:textColor="@color/textcolor"
+                android:id="@+id/buyPriceTextView"
                 />
         </LinearLayout>
         <LinearLayout
@@ -80,11 +81,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1210"
+                android:text="..."
                 android:layout_gravity="left"
                 android:textSize="18sp"
                 android:paddingLeft="30dp"
                 android:textColor="@color/textcolor"
+                android:id="@+id/sellPriceTextView"
                 />
         </LinearLayout>
     </LinearLayout>

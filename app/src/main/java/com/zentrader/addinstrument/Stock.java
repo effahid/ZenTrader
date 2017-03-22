@@ -17,7 +17,6 @@ public class Stock implements Parcelable {
     public String Name;
     public String Symbol;
 
-
     protected Stock(Parcel in) {
         Movement = in.readString();
         Buy = in.readFloat();
