@@ -85,14 +85,14 @@ public class HomeScreen extends AppCompatActivity {
 
     public void ShowAddInstrument(MenuItem item) {
         Intent addInstrumentIntent = new Intent(getBaseContext(), AddInstrumentActivity.class);
-        ArrayList<String> selectedStocks = new ArrayList<>();
+        ArrayList<Stock> selectedStocks = new ArrayList<>();
         for(Stock stock:stockPortfolio)
         {
-            selectedStocks.add(stock.Symbol);
+            selectedStocks.add(stock);
         }
-        addInstrumentIntent.putStringArrayListExtra("SelectedStocks", selectedStocks);
-        addInstrumentIntent.putExtra("ATest","Hyyyyy");
-        startActivityForResult(addInstrumentIntent, ADD_INSTRUMENT_ACTIVITY_RESULT_CODE);
+        addInstrumentIntent.putExtra("SelectedStocks", selectedStocks);
+
+       startActivityForResult(addInstrumentIntent, ADD_INSTRUMENT_ACTIVITY_RESULT_CODE);
     }
 
     @Override

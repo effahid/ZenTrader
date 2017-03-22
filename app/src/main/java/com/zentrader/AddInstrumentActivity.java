@@ -1,22 +1,17 @@
 package com.zentrader;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.view.ViewCompat;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,7 +19,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 public class AddInstrumentActivity extends AppCompatActivity {
 
@@ -69,7 +63,8 @@ public class AddInstrumentActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
 
-        Stock[] availableStockName= getAvailableStocks(intent.getStringArrayListExtra("SelectedStocks"));
+        ArrayList<Stock> existingStockList =(ArrayList<Stock>)getIntent().getSerializableExtra("SelectedStocks");
+        Stock[] availableStockName= getAvailableStocks(existingStockList);
         AvailableInstrumentsAdapter adapter = new AvailableInstrumentsAdapter(this,availableStockName);
         ListView availableInstruments = (ListView)findViewById(R.id.available_instruments_list);
         availableInstruments.setAdapter(adapter);
@@ -78,9 +73,9 @@ public class AddInstrumentActivity extends AppCompatActivity {
         setSupportActionBar(instrumentToolbar);
     }
 
-    private Stock[] getAvailableStocks(ArrayList<String> selectedStocks) {
+    private Stock[] getAvailableStocks(ArrayList<Stock> selectedStocks) {
 
-        List<Stock> allStocks=new ArrayList<Stock>();
+        List<Stock> allStocks=new ArrayList<>();
 
         allStocks.add(new Stock("GLD","GOLD"));
         allStocks.add(new Stock("SLVR","SILVER"));
@@ -91,9 +86,11 @@ public class AddInstrumentActivity extends AppCompatActivity {
         while(i.hasNext())
         {
             Stock s = i.next();
-            Log.d("","Selected stock symbol: current = " + s.Symbol);
-            if(selectedStocks.contains(s.Symbol)){
-                i.remove();
+            for(Stock s2:selectedStocks)
+            {
+                if(s2.Symbol.equals(s.Symbol)){
+                    i.remove();
+                }
             }
         }
 
