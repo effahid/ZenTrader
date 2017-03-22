@@ -1,4 +1,4 @@
-package com.zentrader;
+package com.zentrader.homescreen;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.zentrader.instrumentdetail.InstrumentDetailActivity;
+import com.zentrader.R;
+import com.zentrader.addinstrument.Stock;
+import com.zentrader.addinstrument.AddInstrumentActivity;
 
 import java.util.ArrayList;
 import java.util.Random;

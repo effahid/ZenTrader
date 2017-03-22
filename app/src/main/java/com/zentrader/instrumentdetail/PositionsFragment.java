@@ -1,10 +1,12 @@
-package com.zentrader;
+package com.zentrader.instrumentdetail;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.zentrader.R;
 
 public class PositionsFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package com.zentrader;
+package com.zentrader.instrumentdetail;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -24,6 +24,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.zentrader.R;
 
 import java.util.ArrayList;
 import java.util.List;

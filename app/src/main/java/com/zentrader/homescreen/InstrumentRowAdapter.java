@@ -1,4 +1,4 @@
-package com.zentrader;
+package com.zentrader.homescreen;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.zentrader.R;
+import com.zentrader.addinstrument.Stock;
 
 import java.util.ArrayList;
 

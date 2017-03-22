@@ -1,4 +1,4 @@
-package com.zentrader;
+package com.zentrader.instrumentdetail;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

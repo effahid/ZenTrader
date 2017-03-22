@@ -1,4 +1,4 @@
-package com.zentrader;
+package com.zentrader.instrumentdetail;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import com.zentrader.R;
 
 public class InstrumentDetailActivity extends AppCompatActivity {
     private TabLayout tabLayout;

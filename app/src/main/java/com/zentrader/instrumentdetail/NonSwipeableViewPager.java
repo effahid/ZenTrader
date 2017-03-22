@@ -1,4 +1,4 @@
-package com.zentrader;
+package com.zentrader.instrumentdetail;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

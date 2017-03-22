@@ -1,4 +1,4 @@
-package com.zentrader;
+package com.zentrader.addinstrument;
 
 import android.os.Parcel;
 import android.os.Parcelable;

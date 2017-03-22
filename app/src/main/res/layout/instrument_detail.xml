@@ -133,7 +133,7 @@
                 app:tabTextColor="@color/black"/>
         </android.support.design.widget.AppBarLayout>
 
-        <com.zentrader.NonSwipeableViewPager
+        <com.zentrader.instrumentdetail.NonSwipeableViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
