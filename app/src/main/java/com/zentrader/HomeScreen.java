@@ -1,6 +1,5 @@
 package com.zentrader;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,16 +13,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
-
-import butterknife.ButterKnife;
 
 public class HomeScreen extends AppCompatActivity {
     private static final int ADD_INSTRUMENT_ACTIVITY_RESULT_CODE = 1;
     final Handler handler = new Handler();
     private ArrayList<Stock> stockPortfolio = new ArrayList<>();
-    MyListAdapter listAdapter;
+    InstrumentRowAdapter listAdapter;
     Runnable runnable;
     ListView listView;
     boolean beganUpdating;
@@ -36,7 +32,7 @@ public class HomeScreen extends AppCompatActivity {
         Toolbar mainToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(mainToolbar);
 
-        listAdapter = new MyListAdapter(this, stockPortfolio);
+        listAdapter = new InstrumentRowAdapter(this, stockPortfolio);
 
         listView = (ListView) findViewById(R.id.MyList);
         listView.setAdapter(listAdapter);
@@ -44,7 +40,7 @@ public class HomeScreen extends AppCompatActivity {
         runnable = new Runnable() {
             @Override
             public void run() {
-                updateAdapter(listAdapter);
+                UpdateAdapter(listAdapter);
                 handler.postDelayed(this, 3000);
             }
         };
@@ -64,7 +60,7 @@ public class HomeScreen extends AppCompatActivity {
     }
 
 
-    public void updateAdapter(MyListAdapter listAdapter) {
+    public void UpdateAdapter(InstrumentRowAdapter listAdapter) {
         Random random = new Random();
         for(Stock stock:stockPortfolio )
         {

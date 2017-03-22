@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -34,7 +32,7 @@ public class AddInstrumentActivity extends AppCompatActivity {
         Toolbar instrumentToolbar = (Toolbar) findViewById(R.id.action_addInstrument);
 
         ArrayList<Stock> existingStockList =(ArrayList<Stock>)getIntent().getSerializableExtra("SelectedStocks");
-        Stock[] availableStockName= getAvailableStocks(existingStockList);
+        Stock[] availableStockName= GetAvailableStocks(existingStockList);
         AvailableInstrumentsAdapter adapter = new AvailableInstrumentsAdapter(this,availableStockName);
         ListView availableInstruments = (ListView)findViewById(R.id.available_instruments_list);
         availableInstruments.setAdapter(adapter);
@@ -71,7 +69,7 @@ public class AddInstrumentActivity extends AppCompatActivity {
             }
         }};
 
-    private Stock[] getAvailableStocks(ArrayList<Stock> selectedStocks) {
+    private Stock[] GetAvailableStocks(ArrayList<Stock> selectedStocks) {
 
         List<Stock> allStocks=new ArrayList<>();
 

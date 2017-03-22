@@ -2,19 +2,11 @@ package com.zentrader;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class InstrumentDetailActivity extends AppCompatActivity {
     private TabLayout tabLayout;
@@ -32,7 +24,7 @@ public class InstrumentDetailActivity extends AppCompatActivity {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        InstrumentDetailPagerAdapter adapter = new InstrumentDetailPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new ChartFragment(), "CHART");
         adapter.addFragment(new PositionsFragment(), "POSITIONS");
         adapter.addFragment(new ChangeFragment(), "CHANGE");
@@ -50,34 +42,5 @@ public class InstrumentDetailActivity extends AppCompatActivity {
 
     public void GoBack(MenuItem item) {
         finish();
-    }
-}
-
-class ViewPagerAdapter extends FragmentPagerAdapter {
-    private final List<Fragment> mFragmentList = new ArrayList<>();
-    private final List<String> mFragmentTitleList = new ArrayList<>();
-
-    public ViewPagerAdapter(FragmentManager manager) {
-        super(manager);
-    }
-
-    @Override
-    public Fragment getItem(int position) {
-        return mFragmentList.get(position);
-    }
-
-    @Override
-    public int getCount() {
-        return mFragmentList.size();
-    }
-
-    public void addFragment(Fragment fragment, String title) {
-        mFragmentList.add(fragment);
-        mFragmentTitleList.add(title);
-    }
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return mFragmentTitleList.get(position);
     }
 }
