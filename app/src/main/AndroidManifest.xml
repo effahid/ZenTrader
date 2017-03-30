@@ -15,9 +15,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".instrumentdetail.InstrumentDetailActivity"/>
-        <activity android:name=".addinstrument.AddInstrumentActivity"  android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
+        <activity android:name=".addinstrument.AddInstrumentActivity"  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
 
-        </activity>
+        <service android:name="com.zentrader.stockservice.StockService" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

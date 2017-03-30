@@ -64,16 +64,16 @@ public class ChartFragment extends Fragment {
     private LineDataSet createSet() {
 
         LineDataSet set = new LineDataSet(null, "Dynamic Data");
-        // set.setAxisDependency(AxisDependency.LEFT);
-//        set.setColor(ColorTemplate.getHoloBlue());
-//        set.setCircleColor(Color.WHITE);
-//        set.setLineWidth(2f);
-//        set.setCircleRadius(4f);
-//        set.setFillAlpha(65);
-//        set.setFillColor(ColorTemplate.getHoloBlue());
-//        set.setHighLightColor(Color.rgb(244, 117, 117));
-//        set.setValueTextColor(Color.WHITE);
-//        set.setValueTextSize(9f);
+        set.setAxisDependency(YAxis.AxisDependency.LEFT);
+        set.setColor(ColorTemplate.getHoloBlue());
+        set.setCircleColor(Color.BLUE);
+        set.setLineWidth(1f);
+        set.setCircleRadius(3f);
+        set.setFillAlpha(65);
+        set.setFillColor(ColorTemplate.getHoloBlue());
+        set.setHighLightColor(Color.rgb(244, 117, 117));
+        set.setValueTextColor(Color.BLACK);
+        set.setValueTextSize(9f);
 
        set.setDrawValues(false);
         return set;
@@ -90,13 +90,13 @@ public class ChartFragment extends Fragment {
         // enable description text
         mChart.getDescription().setEnabled(true);
 
-        // enable touch gestures
-//        mChart.setTouchEnabled(true);
-//
-//        // enable scaling and dragging
-//        mChart.setDragEnabled(true);
-//        mChart.setScaleEnabled(true);
-//        mChart.setDrawGridBackground(false);
+      //   enable touch gestures
+        mChart.setTouchEnabled(true);
+
+        // enable scaling and dragging
+        mChart.setDragEnabled(true);
+        mChart.setScaleEnabled(true);
+        mChart.setDrawGridBackground(false);
 
         // if disabled, scaling can be done on x- and y-axis separately
         // mChart.setPinchZoom(true);
@@ -105,7 +105,7 @@ public class ChartFragment extends Fragment {
         //mChart.setBackgroundColor(Color.LTGRAY);
 
         LineData data = new LineData();
-        data.setValueTextColor(Color.WHITE);
+        data.setValueTextColor(Color.BLACK);
 
         // add empty data
         mChart.setData(data);
@@ -116,14 +116,14 @@ public class ChartFragment extends Fragment {
         // modify the legend ...
         l.setForm(Legend.LegendForm.LINE);
 
-        l.setTextColor(Color.WHITE);
+        l.setTextColor(Color.BLACK);
 
         XAxis xl = mChart.getXAxis();
 
-        xl.setTextColor(Color.WHITE);
+        xl.setTextColor(Color.BLACK);
         xl.setDrawGridLines(false);
-        //xl.setAvoidFirstLastClipping(true);
-        //xl.setEnabled(true);
+        xl.setAvoidFirstLastClipping(true);
+        xl.setEnabled(true);
 
         YAxis leftAxis = mChart.getAxisLeft();
 
@@ -134,7 +134,7 @@ public class ChartFragment extends Fragment {
 
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setEnabled(false);
-        handler.postDelayed(runnable,500);
+        handler.postDelayed(runnable,2000);
         return view;
     }
 
@@ -163,10 +163,10 @@ public class ChartFragment extends Fragment {
             mChart.setVisibleXRangeMaximum(5);
             // mChart.setVisibleYRange(30, AxisDependency.LEFT);
 
+          //  mChart.animateX(500);
             // move to the latest entry
-            mChart.moveViewToAnimated(data.getEntryCount(),data.getYMax(), YAxis.AxisDependency.LEFT,500);
-
-            // this automatically refreshes the chart (calls invalidate())
+            mChart.moveViewToX(data.getEntryCount()/2);
+             // this automatically refreshes the chart (calls invalidate())
             // mChart.moveViewTo(data.getXValCount()-7, 55f,
             // AxisDependency.LEFT);
         }

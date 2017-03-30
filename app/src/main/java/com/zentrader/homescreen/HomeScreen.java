@@ -1,10 +1,15 @@
 package com.zentrader.homescreen;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,6 +21,8 @@ import com.zentrader.instrumentdetail.InstrumentDetailActivity;
 import com.zentrader.R;
 import com.zentrader.addinstrument.Stock;
 import com.zentrader.addinstrument.AddInstrumentActivity;
+import com.zentrader.stockservice.StockBroadcastReceiver;
+import com.zentrader.stockservice.StockService;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -28,10 +35,16 @@ public class HomeScreen extends AppCompatActivity {
     Runnable runnable;
     ListView listView;
     boolean beganUpdating;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+
+        Intent stockServiceIntent= new Intent(this,StockService.class);
+        stockPortfolio.add(new Stock("TT","TEST"));
+        stockServiceIntent.putParcelableArrayListExtra("selectedStocks",stockPortfolio);
+        getApplicationContext().startService(stockServiceIntent);
         //ButterKnife.bind(this);
 
         Toolbar mainToolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -41,16 +54,6 @@ public class HomeScreen extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.MyList);
         listView.setAdapter(listAdapter);
-
-        runnable = new Runnable() {
-            @Override
-            public void run() {
-                UpdateAdapter(listAdapter);
-                handler.postDelayed(this, 3000);
-            }
-        };
-
-       // handler.postDelayed(runnable, 1000);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -62,19 +65,22 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
 
+        LocalBroadcastManager.getInstance(this).registerReceiver(mStockPriceReceiver,new IntentFilter("stock-price-updated"));
+
     }
 
-
-    public void UpdateAdapter(InstrumentRowAdapter listAdapter) {
-        Random random = new Random();
-        for(Stock stock:stockPortfolio )
-        {
-            stock.Buy= random.nextFloat()+1200;
-            stock.Sell= random.nextFloat()+1190;
-            stock.Movement="U";
+    private BroadcastReceiver mStockPriceReceiver= new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            listAdapter.stockData = intent.getParcelableArrayListExtra("updatedStockPrices");
+            listAdapter.notifyDataSetChanged();
         }
-        listAdapter.stockData = stockPortfolio;
-        listAdapter.notifyDataSetChanged();
+    };
+
+    @Override
+    protected void onDestroy() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mStockPriceReceiver);
+        super.onDestroy();
     }
 
     @Override
@@ -103,19 +109,22 @@ public class HomeScreen extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
 
 
-
                 // get String data from Intent
+                //THIS IS PROBABLY THE PROBLEM AREA WHICH IS CRASHING
                 ArrayList<String> addedStocks = data.getStringArrayListExtra("SelectedStocks");
                 for(String addedStock:addedStocks)
                 {
                     stockPortfolio.add(new Stock(addedStock,addedStock));
                 }
-                listAdapter.notifyDataSetChanged();
-
-                if(!beganUpdating){
-                    beganUpdating=true;
-                    handler.postDelayed(runnable, 2000);
-                }
+                Intent intent = new Intent("stocks-list-updated");
+                intent.putParcelableArrayListExtra("selectedStockList", stockPortfolio);
+                LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+//                listAdapter.notifyDataSetChanged();
+//
+//                if(!beganUpdating){
+//                    beganUpdating=true;
+//                    handler.postDelayed(runnable, 2000);
+//                }
             }
         }
     }
