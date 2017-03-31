@@ -29,10 +29,9 @@ import java.util.Random;
 
 public class HomeScreen extends AppCompatActivity {
     private static final int ADD_INSTRUMENT_ACTIVITY_RESULT_CODE = 1;
-    final Handler handler = new Handler();
     private ArrayList<Stock> stockPortfolio = new ArrayList<>();
     InstrumentRowAdapter listAdapter;
-    Runnable runnable;
+
     ListView listView;
     boolean isStockServiceRunning;
 
@@ -115,8 +114,6 @@ public class HomeScreen extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
 
 
-                // get String data from Intent
-                //THIS IS PROBABLY THE PROBLEM AREA WHICH IS CRASHING
                 ArrayList<String> addedStocks = data.getStringArrayListExtra("SelectedStocks");
                 for(String addedStock:addedStocks)
                 {
@@ -128,12 +125,6 @@ public class HomeScreen extends AppCompatActivity {
                 intent.putParcelableArrayListExtra("selectedStockList", stockPortfolio);
 
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
-//                listAdapter.notifyDataSetChanged();
-//
-//                if(!beganUpdating){
-//                    beganUpdating=true;
-//                    handler.postDelayed(runnable, 2000);
-//                }
             }
         }
     }

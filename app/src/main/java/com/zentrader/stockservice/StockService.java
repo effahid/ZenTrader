@@ -9,10 +9,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
-
 import com.zentrader.addinstrument.Stock;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -24,7 +21,7 @@ public class StockService extends Service{
     private ArrayList<Stock> stockPortfolio = new ArrayList<>();
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-    if(intent==null)return START_NOT_STICKY;
+
         stockPortfolio=intent.getParcelableArrayListExtra("selectedStocks");
         LocalBroadcastManager.getInstance(this).registerReceiver(mUpdatedStockListReceiver,new IntentFilter("stocks-list-updated"));
 
@@ -37,15 +34,6 @@ public class StockService extends Service{
         };
         handler.postDelayed(runnable,500);
         return Service.START_STICKY;
-    }
-
-
-
-    private void sendMessageToActivity(String newData){
-        Intent broadcastIntent = new Intent();
-        broadcastIntent.setAction("ServiceToActivityAction");
-        broadcastIntent.putExtra("ServiceToActivityKey", newData);
-        sendBroadcast(broadcastIntent);
     }
 
     @Nullable

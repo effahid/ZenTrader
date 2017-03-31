@@ -17,7 +17,6 @@ public class InstrumentRowAdapter extends ArrayAdapter<Stock> {
     ArrayList<Stock> stockData;
     public InstrumentRowAdapter(Context context, ArrayList<Stock> values) {
         super(context, -1, values);
-        if(values==null)values= new ArrayList<Stock>();
         stockData=values;
     }
 
