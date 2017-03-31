@@ -34,17 +34,15 @@ public class HomeScreen extends AppCompatActivity {
     InstrumentRowAdapter listAdapter;
     Runnable runnable;
     ListView listView;
-    boolean beganUpdating;
+    boolean isStockServiceRunning;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
-        Intent stockServiceIntent= new Intent(this,StockService.class);
-        stockPortfolio.add(new Stock("TT","TEST"));
-        stockServiceIntent.putParcelableArrayListExtra("selectedStocks",stockPortfolio);
-        getApplicationContext().startService(stockServiceIntent);
+        StartStockService();
+
         //ButterKnife.bind(this);
 
         Toolbar mainToolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -67,6 +65,14 @@ public class HomeScreen extends AppCompatActivity {
 
         LocalBroadcastManager.getInstance(this).registerReceiver(mStockPriceReceiver,new IntentFilter("stock-price-updated"));
 
+    }
+
+    private void StartStockService() {
+        if(isStockServiceRunning)return;
+        Intent stockServiceIntent= new Intent(this,StockService.class);
+        stockServiceIntent.putParcelableArrayListExtra("selectedStocks",stockPortfolio);
+        getApplicationContext().startService(stockServiceIntent);
+        isStockServiceRunning=true;
     }
 
     private BroadcastReceiver mStockPriceReceiver= new BroadcastReceiver() {
@@ -116,8 +122,11 @@ public class HomeScreen extends AppCompatActivity {
                 {
                     stockPortfolio.add(new Stock(addedStock,addedStock));
                 }
+                listAdapter.stockData=stockPortfolio;
+                listAdapter.notifyDataSetChanged();
                 Intent intent = new Intent("stocks-list-updated");
                 intent.putParcelableArrayListExtra("selectedStockList", stockPortfolio);
+
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
 //                listAdapter.notifyDataSetChanged();
 //

@@ -24,7 +24,7 @@ public class StockService extends Service{
     private ArrayList<Stock> stockPortfolio = new ArrayList<>();
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
+    if(intent==null)return START_NOT_STICKY;
         stockPortfolio=intent.getParcelableArrayListExtra("selectedStocks");
         LocalBroadcastManager.getInstance(this).registerReceiver(mUpdatedStockListReceiver,new IntentFilter("stocks-list-updated"));
 
