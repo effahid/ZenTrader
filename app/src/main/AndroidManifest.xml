@@ -8,14 +8,16 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".homescreen.HomeScreen">
+        <activity android:name=".homescreen.HomeScreen"/>
+        <activity android:name=".instrumentdetail.InstrumentDetailActivity"/>
+        <activity android:name=".register.RegisterAccountActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".instrumentdetail.InstrumentDetailActivity"/>
-        <activity android:name=".addinstrument.AddInstrumentActivity"  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+        <activity android:name=".addinstrument.AddInstrumentActivity"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
 
         <service android:name="com.zentrader.stockservice.StockService" />
         <meta-data
