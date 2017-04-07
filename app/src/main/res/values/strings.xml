@@ -16,4 +16,7 @@
     <string name="register_screen_register_button_label">Save</string>
     <string name="register_screen_lastname_label">Last Name</string>
     <string name="register_screen_email_label">Email</string>
+    <string name="register_screen_password_label">Choose a password</string>
+    <string name="register_screen_register_switch_label">Stay logged in</string>
+    <string name="register_screen_login_label">Login</string>
 </resources>

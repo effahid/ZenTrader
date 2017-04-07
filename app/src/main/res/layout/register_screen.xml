@@ -20,35 +20,6 @@
         android:textAlignment="center"/>
 
     <TextView
-        android:id="@+id/register_screen_forename_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/register_screen_forename_label" />
-
-    <EditText
-        android:id="@+id/register_screen_forename_edittext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:inputType="text"
-      />
-
-    <TextView
-        android:id="@+id/register_screen_lastname_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-      
-        android:text="@string/register_screen_lastname_label" />
-
-    <EditText
-        android:id="@+id/register_screen_lastname_edittext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:inputType="text"
-      />
-
-    <TextView
         android:id="@+id/register_screen_email_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -63,12 +34,61 @@
         android:inputType="text"
       />
 
+    <TextView
+        android:id="@+id/register_screen_password_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register_screen_password_label"
+        />
+
+    <EditText
+        android:id="@+id/register_screen_password_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:inputType="textPassword"
+        />
+
+    <Switch
+        android:id="@+id/register_screen_savePasswordSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register_screen_register_switch_label"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:id="@+id/register_screen_login_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register_screen_login_label"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="12dp"
+        android:textAlignment="center"
+
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@android:color/darker_gray"/>
+
     <Button
         android:id="@+id/register_screen_register_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="RegisterUser"
         android:text="@string/register_screen_register_button_label" />
+
+
 
 
 </LinearLayout>

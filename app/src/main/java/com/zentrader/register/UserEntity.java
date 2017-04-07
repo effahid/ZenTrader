@@ -7,37 +7,35 @@ import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
 public class UserEntity {
-    @Id
-    private Long id;
 
-    @NotNull
-    private String FirstName;
+    public String Email;
 
-    @Generated(hash = 1719645899)
-    public UserEntity(Long id, @NotNull String FirstName) {
-        this.id = id;
-        this.FirstName = FirstName;
+    public String Password;
+
+    @Generated(hash = 1965378423)
+    public UserEntity(String Email, String Password) {
+        this.Email = Email;
+        this.Password = Password;
     }
 
     @Generated(hash = 1433178141)
     public UserEntity() {
     }
 
-    public Long getId() {
-        return this.id;
+    public String getEmail() {
+        return this.Email;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setEmail(String Email) {
+        this.Email = Email;
     }
 
-    public String getFirstName() {
-        return this.FirstName;
+    public String getPassword() {
+        return this.Password;
     }
 
-    public void setFirstName(String FirstName) {
-        this.FirstName = FirstName;
+    public void setPassword(String Password) {
+        this.Password = Password;
     }
 
-   
 }
